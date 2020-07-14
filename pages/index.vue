@@ -1,9 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <Root />
+  </div>
 </template>
 
 <script>
-export default {}
+import Root from '~/components/landing page/root'
+export default {
+  components: {
+    Root,
+  },
+}
 </script>
 
 <style></style>
