@@ -39,13 +39,15 @@
               <button
                 class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
               >
-                Button
+                Send
               </button>
             </div>
             <div
               class="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center"
             >
-              <a class="text-indigo-500">example@email.com</a>
+              <a class="text-indigo-500" href="mailto:example@email.com"
+                >example@email.com</a
+              >
               <p class="leading-normal my-5">
                 49 Smith St. <br />Saint Cloud, MN 56301
               </p>
