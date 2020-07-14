@@ -1,17 +1,14 @@
 <template>
   <div>
-    <Ban />
-    <Member />
+    <About />
   </div>
 </template>
 
 <script>
-import Ban from './banner'
-import Member from './member'
+import About from './about'
 export default {
   components: {
-    Ban,
-    Member,
+    About,
   },
 }
 </script>
