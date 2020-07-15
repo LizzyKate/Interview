@@ -55,10 +55,10 @@ export default {
     loggedin() {
       const exist = localStorage.getItem('id')
       if (exist) {
-        return true
+        return false
       } else {
         // this.$router.push('/register')
-        return false
+        return true
       }
     },
   },

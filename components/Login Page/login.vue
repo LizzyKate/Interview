@@ -57,8 +57,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import { authenticate } from '~/middleware/routeGuard'
 export default {
   data() {
     return {
@@ -85,30 +83,15 @@ export default {
       try {
         const details = await this.$axios.$post('/api/auth/signin', data)
         localStorage.setItem('auth-token', details.token)
-        localStorage.setItem('id', details._id)
+        localStorage.setItem('id', details.id)
         const host = window.location.origin
         window.location.assign(host + '/profile/' + details.id)
-        // this.$router.push()
       } catch (error) {
         alert('Incorrect Username And Password')
         console.error(error.response)
       }
 
       this.$store.commit('spin/loading', false)
-
-      // axios.post('/api/auth/signin', data).then(
-      //   ({ data }) => {
-      //     console.log('i am posted')
-      //     console.log(data)
-      //     localStorage.setItem('auth-token', data.data)
-      //     this.$router.push('/Profile')
-      //   },
-      //   (err) => {
-      //     console.log(err.response)
-      //     if (err.response.data.error === 'incorrect username or password')
-      //       alert('Incorrect Email And Password')
-      //   }
-      // )
     },
   },
 }

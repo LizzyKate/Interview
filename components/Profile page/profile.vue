@@ -12,14 +12,6 @@ export default {
   components: {
     About,
   },
-  beforeRouteEnter(to, from, next) {
-    // if (authenticate()) {
-    //   next(true)
-    //   // do something //
-    // } else {
-    //   next('/login')
-    // }
-  },
 }
 </script>
 

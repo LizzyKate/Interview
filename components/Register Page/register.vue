@@ -117,9 +117,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import { authenticate } from '~/middleware/routeGuard'
-
 export default {
   data() {
     return {
@@ -184,7 +181,7 @@ export default {
           // this.$router.push('/profile/' + response.id)
         } catch (error) {
           console.error(error.response)
-          alert(error)
+          alert('An Error Occured')
         }
       }
       this.$store.commit('spin/loading', false)
