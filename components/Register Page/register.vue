@@ -177,7 +177,7 @@ export default {
           console.log(response)
           localStorage.setItem('auth-token', response.token)
           localStorage.setItem('id', response.id)
-          window.Location.assign('profile/' + response.id)
+          window.location.assign('profile/' + response.id)
           // this.$router.push('/profile/' + response.id)
         } catch (error) {
           console.error(error.response)
