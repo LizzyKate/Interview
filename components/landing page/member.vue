@@ -71,13 +71,6 @@
           </div>
         </div>
       </div>
-      <div class="mb-24 text-center">
-        <button
-          class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-        >
-          See More Members
-        </button>
-      </div>
     </section>
   </div>
 </template>
