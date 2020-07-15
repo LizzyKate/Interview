@@ -47,7 +47,6 @@
             />
             <textarea
               v-model="about"
-              minlength="20"
               class="bg-white rounded border border-gray-400 focus:outline-none h-32 focus:border-indigo-500 text-base px-4 py-2 mb-4 resize-none w-full"
               placeholder="About Me"
               required
@@ -181,7 +180,11 @@ export default {
           // this.$router.push('/profile/' + response.id)
         } catch (error) {
           console.error(error.response)
-          alert('An Error Occured')
+          if (error.response?.data?.error === 'user already exists') {
+            alert('email already exist')
+          } else {
+            alert('An Error Occured')
+          }
         }
       }
       this.$store.commit('spin/loading', false)
