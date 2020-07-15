@@ -3,10 +3,10 @@
     <section
       class="text-gray-700 body-font lg:flex lg:justify-center lg:items-center"
     >
-      <p v-if="error" class="my-64">An Error Occured</p>
+      <p v-if="error" class="py-64 text-center">An Error Occured</p>
       <div v-if="edit && !error" class="flex-grow">
         <div class="container px-5 py-24 mx-auto flex flex-col">
-          <div class="lg:w-4/6 mx-auto">
+          <div class="lg:w-4/6 w-full mx-auto">
             <div class="rounded-lg lg:h-64 h-0 overflow-hidden mt-24">
               <img
                 alt="content"
@@ -36,7 +36,7 @@
               <div
                 class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-300 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left"
               >
-                <p class="leading-relaxed text-lg mb-4">
+                <p class="leading-relaxed text-lg mb-4 break-all">
                   {{ info.about }}
                 </p>
                 <button
@@ -57,6 +57,12 @@
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </button>
+                <!-- <button
+                  class="text-white bg-red-500 border-0 py-2 px-8 mt-3 focus:outline-none hover:bg-red-600 rounded text-lg ml-6"
+                  @click="deleteAccount"
+                >
+                  Delete
+                </button> -->
               </div>
             </div>
           </div>
@@ -69,13 +75,6 @@
             class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
             placeholder="Change Name"
             type="text"
-            required
-          />
-          <input
-            v-model="password"
-            class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
-            placeholder="Change Password"
-            type="password"
             required
           />
           <textarea
@@ -113,14 +112,13 @@ export default {
       info: {},
       edit: true,
       name: '',
-      password: '',
       about: '',
       error: false,
     }
   },
   computed: {
     authenticate() {
-      if (this.name !== '' && this.password !== '' && this.about !== '') {
+      if (this.name !== '' && this.about !== '') {
         return false
       } else {
         return true
@@ -146,28 +144,37 @@ export default {
     this.$store.commit('spin/loading', false)
   },
   methods: {
+    // async deleteAccount() {
+    //   this.$store.commit('spin/loading', true)
+    //   try {
+    //     await this.$axios.$delete('/api/user')
+    //     const host = window.location.origin
+    //     window.location.assign(host)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    //   this.$store.commit('spin/loading', false)
+    // },
     editing() {
       this.edit = !this.edit
+      this.name = this.info.name
+      this.about = this.info.about
     },
     cancel() {
       this.edit = true
     },
     async update() {
-      const data = {
+      const changed = {
         name: this.name,
-        password: this.password,
         about: this.about,
       }
       this.$store.commit('spin/loading', true)
-      const identity = localStorage.getItem('id')
       try {
-        const newInfo = await this.$axios.$patch('/api/user/' + identity, data)
-        console.log(newInfo)
-        // const host = window.location.origin
-        // window.location.assign(host + '/profile/' + identity)
+        const newInfo = await this.$axios.$patch('/api/user', changed)
+        this.info = newInfo.data
+        this.edit = true
       } catch (error) {
         alert('An error occured')
-        console.log(error)
       }
       this.$store.commit('spin/loading', false)
     },

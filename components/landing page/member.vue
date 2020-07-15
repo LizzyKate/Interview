@@ -58,7 +58,7 @@
                   >
                     {{ person.name }}
                   </h2>
-                  <p class="leading-relaxed">
+                  <p class="leading-relaxed break-all">
                     {{
                       person.about.length > 250
                         ? person.about.slice(0, 20) + '....'
