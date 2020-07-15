@@ -10,6 +10,7 @@ export default {
   components: {
     Profile,
   },
+  middleware: ['auth'],
 }
 </script>
 

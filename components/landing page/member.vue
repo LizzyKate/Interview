@@ -18,30 +18,56 @@
           <div
             v-for="(person, i) in members"
             :key="i"
-            class="lg:w-1/3 sm:w-1/2 p-4"
+            class="lg:w-1/3 w-full p-4 xl:mb-0 mb-20"
           >
-            <div class="flex relative">
-              <img
-                alt="gallery"
-                class="absolute inset-0 w-full h-full object-contain object-center"
-                :src="`/img/${person.picture}`"
-              />
-              <div
-                class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100"
-              >
-                <h2
-                  class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1"
+            <nuxt-link :to="'/Profile/' + person._id">
+              <div class="xl:flex relative">
+                <div>
+                  <div class="xl:hidden block text-center">
+                    <h2
+                      class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1"
+                    >
+                      {{ person.name }}
+                    </h2>
+                    <h1
+                      class="title-font text-lg font-medium text-gray-900 mb-3"
+                    >
+                      {{ person.topic }}
+                    </h1>
+                    <p class="leading-relaxed">
+                      {{
+                        person.about.length > 250
+                          ? person.about.slice(0, 20) + '....'
+                          : person.about
+                      }}
+                    </p>
+                  </div>
+                  <img
+                    alt="gallery"
+                    class="xl:absolute inset-0 w-full h-full object-contain"
+                    :src="`${person.image}`"
+                    style="height: 200px;"
+                  />
+                </div>
+                <div
+                  class="hidden xl:block px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100 sm:inline-flex __shadow"
+                  style="height: 200px;"
                 >
-                  {{ person.subtitle }}
-                </h2>
-                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                  {{ person.topic }}
-                </h1>
-                <p class="leading-relaxed">
-                  {{ person.note }}
-                </p>
+                  <h2
+                    class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1"
+                  >
+                    {{ person.name }}
+                  </h2>
+                  <p class="leading-relaxed">
+                    {{
+                      person.about.length > 250
+                        ? person.about.slice(0, 20) + '....'
+                        : person.about
+                    }}
+                  </p>
+                </div>
               </div>
-            </div>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -58,10 +84,17 @@
 
 <script>
 export default {
-  computed: {
-    members() {
-      return this.$store.state.member.people
-    },
+  data() {
+    return {
+      members: [],
+    }
+  },
+  async mounted() {
+    this.$store.commit('spin/loading', true)
+    const people = await this.$axios.$get('/api/user')
+    this.members = people.data
+    this.$store.commit('spin/loading', false)
+    console.log(people)
   },
 }
 </script>

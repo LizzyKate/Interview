@@ -19,16 +19,22 @@
             hexagon try-hard chambray.
           </p>
           <div class="flex justify-center">
-            <button
-              class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-            >
-              Profile
-            </button>
-            <button
-              class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg"
-            >
-              Register
-            </button>
+            <nuxt-link to="/profile">
+              <button
+                class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              >
+                Profile
+              </button>
+            </nuxt-link>
+            <div v-if="loggedin">
+              <nuxt-link to="/login">
+                <button
+                  class="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg"
+                >
+                  Register
+                </button>
+              </nuxt-link>
+            </div>
           </div>
         </div>
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
@@ -44,7 +50,19 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    loggedin() {
+      const exist = localStorage.getItem('id')
+      if (exist) {
+        return true
+      } else {
+        // this.$router.push('/register')
+        return false
+      }
+    },
+  },
+}
 </script>
 
 <style></style>

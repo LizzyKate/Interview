@@ -16,13 +16,20 @@
           class="md:ml-auto flex flex-wrap items-center text-base justify-center"
         >
           <nuxt-link to="/" class="mr-5 hover:text-white">Home</nuxt-link>
-          <nuxt-link to="/Profile" class="mr-5 hover:text-white"
+          <nuxt-link v-if="loggedin" to="/Profile" class="mr-5 hover:text-white"
             >Profile</nuxt-link
           >
-          <nuxt-link to="/Login" class="mr-5 hover:text-white"
+
+          <button v-if="loggedin" class="mr-5 hover:text-white" @click="logout">
+            Logout
+          </button>
+          <nuxt-link v-if="!loggedin" to="/Login" class="mr-5 hover:text-white"
             >Log In</nuxt-link
           >
-          <nuxt-link to="/Register" class="mr-5 hover:text-white"
+          <nuxt-link
+            v-if="!loggedin"
+            to="/Register"
+            class="mr-5 hover:text-white"
             >Sign Up</nuxt-link
           >
         </nav>
@@ -32,7 +39,25 @@
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    loggedin() {
+      const exist = localStorage.getItem('id')
+      if (exist) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
+  methods: {
+    logout() {
+      localStorage.clear()
+      const host = window.location.origin
+      window.location.assign(host)
+    },
+  },
+}
 </script>
 
 <style></style>

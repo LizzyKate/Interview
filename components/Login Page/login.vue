@@ -19,31 +19,37 @@
           <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
             Log In
           </h2>
-          <input
-            v-model="email"
-            class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4"
-            placeholder="Email"
-            type="email"
-          />
-          <input
-            v-model="password"
-            class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4"
-            placeholder="Password"
-            type="password"
-          />
-          <button
-            class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-            :class="{ dim: authenticate === true }"
-          >
-            Login
-          </button>
-          <nuxt-link to="/Register">
+          <form @submit.prevent>
+            <input
+              v-model="email"
+              class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
+              placeholder="Email"
+              type="email"
+              required
+            />
+            <input
+              v-model="password"
+              class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
+              placeholder="Password"
+              type="password"
+              required
+            />
             <button
-              class="text-white bg-indigo-500 border-0 py-2 px-8 mt-3 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
+              class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
+              :class="{ dim: authenticate === true }"
+              :disabled="authenticate"
+              @click="submit"
             >
-              Sign Up
+              Login
             </button>
-          </nuxt-link>
+            <nuxt-link to="/Register">
+              <button
+                class="text-white bg-indigo-500 border-0 py-2 px-8 mt-3 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
+              >
+                Sign Up
+              </button>
+            </nuxt-link>
+          </form>
         </div>
       </div>
     </section>
@@ -51,6 +57,8 @@
 </template>
 
 <script>
+// import axios from 'axios'
+// import { authenticate } from '~/middleware/routeGuard'
 export default {
   data() {
     return {
@@ -65,6 +73,42 @@ export default {
       } else {
         return true
       }
+    },
+  },
+  methods: {
+    async submit() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      }
+      this.$store.commit('spin/loading', true)
+      try {
+        const details = await this.$axios.$post('/api/auth/signin', data)
+        localStorage.setItem('auth-token', details.token)
+        localStorage.setItem('id', details._id)
+        const host = window.location.origin
+        window.location.assign(host + '/profile/' + details.id)
+        // this.$router.push()
+      } catch (error) {
+        alert('Incorrect Username And Password')
+        console.error(error.response)
+      }
+
+      this.$store.commit('spin/loading', false)
+
+      // axios.post('/api/auth/signin', data).then(
+      //   ({ data }) => {
+      //     console.log('i am posted')
+      //     console.log(data)
+      //     localStorage.setItem('auth-token', data.data)
+      //     this.$router.push('/Profile')
+      //   },
+      //   (err) => {
+      //     console.log(err.response)
+      //     if (err.response.data.error === 'incorrect username or password')
+      //       alert('Incorrect Email And Password')
+      //   }
+      // )
     },
   },
 }
