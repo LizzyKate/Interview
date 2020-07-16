@@ -127,7 +127,7 @@
               <nuxt-link :to="'/Profile/' + person._id">
                 <img
                   :src="person.image"
-                  class="w-12 h-12 rounded-full p-1 bg-gray-200 text-gray-400"
+                  class="w-12 h-12 rounded-full p-1 bg-gray-200 text-gray-400 object-contain"
                   alt=""
                 />
               </nuxt-link>
