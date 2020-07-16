@@ -20,9 +20,7 @@
           <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
             Sign Up
           </h2>
-          <p v-if="error.length" class="text-red-900 font-bold">
-            {{ error }}
-          </p>
+          <notifications group="foo" position="top center" class="mt-2" />
           <form @submit.prevent>
             <input
               v-model="Fullname"
@@ -119,7 +117,6 @@
 export default {
   data() {
     return {
-      error: '',
       files: {},
       check: true,
       email: '',
@@ -155,7 +152,6 @@ export default {
       this.check = true
     },
     async submit() {
-      console.log('debuggin')
       this.$store.commit('spin/loading', true)
       if (
         this.Fullname !== '' &&
@@ -173,17 +169,24 @@ export default {
         fd.append('image', this.files)
         try {
           const response = await this.$axios.$post('/api/auth/signup', fd)
-          console.log(response)
           localStorage.setItem('auth-token', response.token)
           localStorage.setItem('id', response.id)
           window.location.assign('profile/' + response.id)
-          // this.$router.push('/profile/' + response.id)
         } catch (error) {
-          console.error(error.response)
           if (error.response?.data?.error === 'user already exists') {
-            alert('email already exist')
+            this.$notify({
+              group: 'foo',
+              title: 'Important Message',
+              type: 'error',
+              text: 'Email already exist',
+            })
           } else {
-            alert('An Error Occured')
+            this.$notify({
+              group: 'foo',
+              title: 'Important Message',
+              type: 'error',
+              text: 'An Error Occured',
+            })
           }
         }
       }

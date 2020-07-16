@@ -19,6 +19,7 @@
           <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
             Log In
           </h2>
+          <notifications group="foo" position="top center" class="mt-2" />
           <form @submit.prevent>
             <input
               v-model="email"
@@ -87,8 +88,12 @@ export default {
         const host = window.location.origin
         window.location.assign(host + '/profile/' + details.id)
       } catch (error) {
-        alert('Incorrect Username And Password')
-        console.error(error.response)
+        this.$notify({
+          group: 'foo',
+          title: 'Important Message',
+          type: 'error',
+          text: 'Incorrect Username And Password',
+        })
       }
 
       this.$store.commit('spin/loading', false)

@@ -87,7 +87,6 @@ export default {
     const people = await this.$axios.$get('/api/user')
     this.members = people.data
     this.$store.commit('spin/loading', false)
-    console.log(people)
   },
 }
 </script>

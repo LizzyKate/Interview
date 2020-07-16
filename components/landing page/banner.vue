@@ -57,7 +57,6 @@ export default {
       if (exist) {
         return false
       } else {
-        // this.$router.push('/register')
         return true
       }
     },

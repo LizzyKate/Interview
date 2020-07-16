@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken'
 
 const Expired = (token) => {
   const payload = jwt.decode(token)
-  console.log(payload, 'payload')
   if (+payload.exp > new Date() / 1000) {
     return true
   } else {
