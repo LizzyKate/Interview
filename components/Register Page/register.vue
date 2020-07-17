@@ -132,7 +132,8 @@ export default {
         this.email !== '' &&
         this.password !== '' &&
         this.Fullname !== '' &&
-        this.about !== ''
+        this.about !== '' &&
+        this.files.name
       ) {
         return false
       } else {
