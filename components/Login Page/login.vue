@@ -6,51 +6,60 @@
       >
         <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
           <h1 class="title-font font-medium text-3xl text-gray-900">
-            Slow-carb next level shoindcgoitch ethical authentic, poko scenester
+            Login to make a contribution
           </h1>
           <p class="leading-relaxed mt-4">
-            Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-            hammock starladder roathse. Craies vegan tousled etsy austin.
+            Technical writers prepare instruction manuals, how-to guides,
+            journal articles, and other supporting documents to communicate
+            complex and technical information more easily. They also develop,
+            gather, and disseminate technical information through an
+            organization’s communications channels.
           </p>
         </div>
         <div
           class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
         >
-          <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
-            Log In
-          </h2>
-          <notifications group="foo" position="top center" class="mt-2" />
-          <form @submit.prevent>
-            <input
-              v-model="email"
-              class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
-              placeholder="Email"
-              type="email"
-              required
-            />
-            <input
-              v-model="password"
-              class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
-              placeholder="Password"
-              type="password"
-              required
-            />
-            <button
-              class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
-              :class="{ dim: authenticate === true }"
-              :disabled="authenticate"
-              @click="submit"
-            >
-              Login
-            </button>
-            <nuxt-link to="/Register">
+          <div
+            data-aos="fade-up"
+            data-aos-easing="ease-out-cubic"
+            data-aos-duration="5000"
+          >
+            <h2 class="text-gray-900 text-lg font-medium title-font mb-5">
+              Log In
+            </h2>
+            <notifications group="foo" position="top center" class="mt-2" />
+            <form @submit.prevent>
+              <input
+                v-model="email"
+                class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
+                placeholder="Email"
+                type="email"
+                required
+              />
+              <input
+                v-model="password"
+                class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full"
+                placeholder="Password"
+                type="password"
+                required
+              />
               <button
-                class="text-white bg-indigo-500 border-0 py-2 px-8 mt-3 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
+                class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
+                :class="{ dim: authenticate === true }"
+                :disabled="authenticate"
+                @click="submit"
               >
-                Sign Up
+                Login
               </button>
-            </nuxt-link>
-          </form>
+              <nuxt-link to="/Register">
+                <button
+                  class="text-white bg-indigo-500 border-0 py-2 px-8 mt-3 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full"
+                >
+                  Sign Up
+                </button>
+              </nuxt-link>
+            </form>
+          </div>
         </div>
       </div>
     </section>

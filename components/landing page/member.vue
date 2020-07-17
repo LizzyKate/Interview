@@ -9,21 +9,21 @@
             Our Clique
           </h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            haven't heard of them man bun deep jianbing selfies heirloom.
+            With our clique, we’ve grown from a database of about 2,000 contacts
+            to a database of more than 5,000 contacts. The team is helpful,
+            knowledgeable, and with you all the way!
           </p>
         </div>
-        <div
-          data-aos="flip-left"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="3000"
-        >
-          <div class="flex flex-wrap -m-4">
+        <div class="flex flex-wrap -m-4">
+          <div
+            v-for="(person, i) in members"
+            :key="i"
+            class="lg:w-1/3 w-full p-4 xl:mb-0 mb-20"
+          >
             <div
-              v-for="(person, i) in members"
-              :key="i"
-              class="lg:w-1/3 w-full p-4 xl:mb-0 mb-20"
+              data-aos="fade-up"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="5000"
             >
               <nuxt-link :to="'/Profile/' + person._id">
                 <div class="xl:flex relative">
@@ -49,7 +49,7 @@
                     </div>
                     <img
                       alt="gallery"
-                      class="xl:absolute inset-0 w-full h-full object-contain"
+                      class="xl:absolute inset-0 w-full h-full object-cover"
                       :src="`${person.image}`"
                       style="height: 200px;"
                     />

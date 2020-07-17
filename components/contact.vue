@@ -4,7 +4,7 @@
       <div
         data-aos="zoom-in-up"
         data-aos-easing="ease-out-cubic"
-        data-aos-duration="3000"
+        data-aos-duration="4000"
       >
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-12">

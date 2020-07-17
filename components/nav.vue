@@ -10,7 +10,9 @@
           <div class="w-24">
             <img src="/img/write.png" class="w-full" alt="" />
           </div>
-          <span class="ml-3 text-xl">Techhacks</span>
+          <nuxt-link to="/">
+            <span class="ml-3 text-xl">Techhacks</span>
+          </nuxt-link>
         </a>
         <nav
           class="md:ml-auto flex flex-wrap items-center text-base justify-center"

@@ -7,11 +7,12 @@
       >
         <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
           <h1 class="title-font font-medium text-3xl text-gray-900">
-            Slow-carb next level shoindcgoitch ethical authentic, poko scenester
+            Sign up to join the clique.
           </h1>
           <p class="leading-relaxed mt-4">
-            Poke slow-carb mixtape knausgaard, typewriter street art gentrify
-            hammock starladder roathse. Craies vegan tousled etsy austin.
+            Technical writing opens the door to a career that simplifies complex
+            topics and provides users with valuable how-to guides.<br />
+            Sign Up and make a contribution
           </p>
         </div>
         <div

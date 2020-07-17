@@ -13,16 +13,18 @@
               <div class="rounded-lg lg:h-64 h-0 overflow-hidden mt-24">
                 <img
                   alt="content"
-                  class="object-contain object-center h-full w-full hidden lg:block"
+                  class="object-cover object-center h-full w-full hidden lg:block"
                   :src="info.image"
                 />
               </div>
               <div class="flex flex-col sm:flex-row mt-10">
                 <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-                  <div
-                    class="w-16 h-16 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400"
-                  >
-                    <img :src="info.image" class="w-3/5" alt="" />
+                  <div class="flex justify-center">
+                    <img
+                      :src="info.image"
+                      class="w-12 h-12 rounded-full p-1 bg-gray-200 text-gray-400 object-contain"
+                      alt=""
+                    />
                   </div>
                   <div
                     class="flex flex-col items-center text-center justify-center"
@@ -45,7 +47,7 @@
                   <div
                     class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-8 mx-auto"
                   ></div>
-                  <p class="leading-relaxed text-lg mb-4 break-all">
+                  <p class="leading-relaxed text-lg mb-4 break-all text-center">
                     {{ info.about }}
                   </p>
                   <button
@@ -123,7 +125,11 @@
             :key="i"
             class="flex flex-row w-full items-center justify-start p-2 cursor-pointer"
           >
-            <div class="">
+            <div
+              data-aos="fade-up"
+              data-aos-easing="ease-out-cubic"
+              data-aos-duration="5000"
+            >
               <nuxt-link :to="'/Profile/' + person._id">
                 <img
                   :src="person.image"
@@ -133,9 +139,15 @@
               </nuxt-link>
             </div>
             <div class="ml-4">
-              <nuxt-link :to="'/Profile/' + person._id">
-                {{ person.name }}
-              </nuxt-link>
+              <div
+                data-aos="fade-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="5000"
+              >
+                <nuxt-link :to="'/Profile/' + person._id">
+                  {{ person.name }}
+                </nuxt-link>
+              </div>
             </div>
           </div>
         </div>

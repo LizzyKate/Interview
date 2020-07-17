@@ -9,7 +9,7 @@
         >
           <div
             data-aos="fade-down-right"
-            data-aos-duration="3000"
+            data-aos-duration="5000"
             data-aos-offset="300"
             data-aos-easing="ease-in-sine"
           >
@@ -19,10 +19,8 @@
               Share Your <br class="hidden lg:inline-block" />Knowledge
             </h1>
             <p class="mb-8 leading-relaxed">
-              Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-              air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-              park mlkshk tote bag selvage hot chicken authentic tumeric
-              truffaut hexagon try-hard chambray.
+              Techhacks is a flexible and dynamic technical documentation
+              company that can handle any project from beginning to end.
             </p>
             <div class="flex justify-center lg:justify-start">
               <nuxt-link to="/profile">
